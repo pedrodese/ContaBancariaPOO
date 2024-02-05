@@ -1,5 +1,7 @@
 package Controladora;
 
+// Aréa de imports
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ public class Controladora {
     double saldoAtual;
     double saldo;
     public void mostraMenu(){
+        // Validação onde é verificado se o Array List possui elementos   
         do
         {
             if(banco.getContas().isEmpty()){
@@ -25,7 +28,7 @@ public class Controladora {
 
             switch (opcaoSelecionada)
             {
-                case 0:
+                case 0: // Criação da Conta
                     Conta conta = new Conta();
                     nome = EntradaSaida.coletaNomeTitularConta();
 
@@ -43,7 +46,7 @@ public class Controladora {
                     banco.setContas(conta);
                     break;
 
-                case 1:
+                case 1: // Deposito
                     if(banco.getContas().isEmpty()){
                         System.exit(0);
                     }
@@ -84,13 +87,13 @@ public class Controladora {
                     EntradaSaida.mostraSaldo(banco.getContas().get(index).getSaldo(), banco.getContas().get(index).getNomeConta());
                     break;
 
-                case 3: // saldo
+                case 3: // Saldo
                     index = EntradaSaida.selecionaConta(banco.getNomes());
 
                     EntradaSaida.mostraSaldo(banco.getContas().get(index).getSaldo(), banco.getContas().get(index).getNomeConta());
                     break;
 
-                case 4: // infoConta
+                case 4: // Informações da Conta
                     index = EntradaSaida.selecionaConta(banco.getNomes());
                     String nome = banco.getContas().get(index).getNomeConta();
                     int tipoConta = banco.getContas().get(index).getTipo();
@@ -101,28 +104,28 @@ public class Controladora {
                     EntradaSaida.mostraInfoConta(nome, tipoConta, saldo, cpf);
                     break;
 
-                case 5: // extrato
+                case 5: // Extrato
                     index = EntradaSaida.selecionaConta(banco.getNomes());
                     ArrayList<String> movimentacoesTotais = banco.getContas().get(index).getMovimentacoesTotais();
 
                     EntradaSaida.mostraMovimentacao(movimentacoesTotais, banco.getContas().get(index).getNomeConta());
                     break;
 
-                case 6: // GetExtractDeposit option
+                case 6: // Extrato de Depósitos
                     index = EntradaSaida.selecionaConta(banco.getNomes());
                     ArrayList<String> movimentacoesDeposito = banco.getContas().get(index).getMovimentacoesDeposito();
 
                     EntradaSaida.mostraMovimentacao(movimentacoesDeposito, banco.getContas().get(index).getNomeConta());
                     break;
 
-                case 7: // GetExtractWithdraw option
+                case 7: // Extrato de Saques
                     index = EntradaSaida.selecionaConta(banco.getNomes());
                     ArrayList<String> movimentacoesSaques = banco.getContas().get(index).getMovimentacoesSaques();
 
                     EntradaSaida.mostraMovimentacao(movimentacoesSaques, banco.getContas().get(index).getNomeConta());
                     break;
 
-                case 8: // Exit option
+                case 8: // Opção de Sair
                     System.exit(0);
                     break;
             }
